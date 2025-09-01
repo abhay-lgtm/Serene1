@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Serene Wellness Platform Design System - Calming & Peaceful 
+All colors MUST be HSL. Soft pastels, soothing blues/greens with white base.
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Pure white background with soft gray text */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 27%;
+
+    /* Card styling - Clean white with subtle shadow */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    /* Popover styling */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    /* Primary - Soothing blue for main actions */
+    --primary: 200 60% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 200 45% 85%;
+
+    /* Secondary - Gentle mint green */
+    --secondary: 165 35% 85%;
+    --secondary-foreground: 165 25% 35%;
+
+    /* Muted tones - Very light and calming */
+    --muted: 200 20% 96%;
+    --muted-foreground: 215 15% 55%;
+
+    /* Accent - Warm, welcoming peach */
+    --accent: 25 65% 88%;
+    --accent-foreground: 25 35% 35%;
+
+    /* Destructive - Soft coral instead of harsh red */
+    --destructive: 5 55% 75%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs - Barely visible, soft */
+    --border: 200 15% 92%;
+    --input: 200 15% 94%;
+    --ring: 200 60% 65%;
+
+    /* Border radius - More rounded for softness */
+    --radius: 0.75rem;
+
+    /* Wellness-specific colors */
+    --wellness-primary: 200 60% 65%;
+    --wellness-secondary: 165 35% 75%;
+    --wellness-accent: 25 65% 85%;
+    --wellness-muted: 200 20% 96%;
+    
+    /* Gradients for peaceful backgrounds */
+    --gradient-peaceful: linear-gradient(135deg, hsl(200 45% 95%) 0%, hsl(165 35% 95%) 50%, hsl(25 45% 95%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 30% 98%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(200 20% 99%) 100%);
+    
+    /* Shadows - Soft and dreamy */
+    --shadow-soft: 0 4px 20px -2px hsl(200 20% 80% / 0.15);
+    --shadow-medium: 0 8px 30px -4px hsl(200 20% 70% / 0.2);
+    --shadow-large: 0 20px 60px -10px hsl(200 20% 60% / 0.25);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-gentle: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Light theme focus - dark mode not prioritized for wellness app */
+  .dark {
+    /* Keep same light theme for consistency */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 27%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-['Poppins',sans-serif] antialiased;
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Wellness-specific component styles */
+  .wellness-card {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-[var(--shadow-soft)] 
+           hover:shadow-[var(--shadow-medium)] transition-[var(--transition-smooth)] 
+           backdrop-blur-sm;
+    background: var(--gradient-card);
+  }
+  
+  .wellness-button {
+    @apply bg-[hsl(var(--wellness-primary))] text-white px-6 py-3 rounded-xl 
+           font-medium transition-[var(--transition-smooth)] 
+           hover:bg-[hsl(var(--wellness-primary)/0.9)] 
+           shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)]
+           hover:scale-105;
+  }
+  
+  .wellness-button-secondary {
+    @apply bg-[hsl(var(--wellness-secondary))] text-[hsl(var(--wellness-secondary))] 
+           px-6 py-3 rounded-xl font-medium transition-[var(--transition-smooth)]
+           border border-[hsl(var(--wellness-secondary))] 
+           hover:bg-[hsl(var(--wellness-secondary)/0.1)]
+           shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-medium)];
+    color: hsl(var(--wellness-secondary) / 0.8);
+  }
+  
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  /* Stagger animations for multiple elements */
+  .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+  .fade-in-up:nth-child(4) { animation-delay: 0.4s; }
+  .fade-in-up:nth-child(5) { animation-delay: 0.5s; }
+  .fade-in-up:nth-child(6) { animation-delay: 0.6s; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
